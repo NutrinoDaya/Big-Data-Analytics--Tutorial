@@ -1,0 +1,14 @@
+
+services:
+  app:
+    build: .
+    container_name: taxi_analytics_app
+    ports:
+      - "8000:8000" # FastAPI app
+      - "4040:4040" # Spark UI
+    volumes:
+      - .:/app
+    environment:
+      # Set environment variables if needed, though we rely on config files
+      - PYSPARK_PYTHON=python3
+      - PYSPARK_DRIVER_PYTHON=python3

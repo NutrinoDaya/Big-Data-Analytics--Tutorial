@@ -1,0 +1,12 @@
+# -----------------------------------------------------------------------------
+# Spark Session Configuration
+# -----------------------------------------------------------------------------
+app_name: "TaxiDataAnalytics"
+master: "local[*]"
+log_level: "ERROR"
+
+# The delta-spark pip package automatically finds the JARs.
+# We just need to tell Spark to activate the extensions.
+delta_catalog:
+  "spark.sql.extensions": "io.delta.sql.DeltaSparkSessionExtension"
+  "spark.sql.catalog.spark_catalog": "org.apache.spark.sql.delta.catalog.DeltaCatalog"

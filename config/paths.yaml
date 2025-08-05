@@ -1,0 +1,9 @@
+# -------------------------
+# Data and Storage Paths
+# -------------------------
+# This file defines all the input and output paths for the project.
+# Using relative paths from the project root.
+# -------------------------
+
+# Output path for the Delta Lake table.
+delta_lake_path: "data/delta/taxi_trips"
