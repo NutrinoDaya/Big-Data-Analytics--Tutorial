@@ -2,7 +2,7 @@ import uvicorn
 from fastapi import FastAPI
 from pyspark.sql import SparkSession
 from contextlib import asynccontextmanager
-from delta import configure_spark_with_delta_pip  # <-- STEP 1: IMPORT THE MAGIC HELPER
+from delta import configure_spark_with_delta_pip
 
 # Using the relative imports you have in your file
 from ..config_loader.load_config import load_all_configs
@@ -26,7 +26,7 @@ async def lifespan(app: FastAPI):
     """
     logger.info("Starting up: Initializing Spark session...")
     
-    # Start building the Spark session as before
+    # Start building the Spark session
     spark_builder = SparkSession.builder \
         .appName(spark_config['app_name']) \
         .master(spark_config['master'])
@@ -41,7 +41,7 @@ async def lifespan(app: FastAPI):
 
     spark.sparkContext.setLogLevel(spark_config['log_level'])
     
-    # Mount the Spark session and configs to the application state
+    # Mount the Spark session and configs to the application state (This is used to prevent re-initializing spark each time)
     app.state.spark = spark
     app.state.paths_config = paths_config
     
